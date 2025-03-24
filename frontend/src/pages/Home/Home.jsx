@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom"
 import Navbar from "../../components/Navbar"
 import axios from "axios"
 import { toast } from "react-toastify"
+import API_BASE_URL from "../../config/api";
+
 import EmptyCard from "../../components/EmptyCard/EmptyCard"
 
 const Home = () => {
@@ -42,7 +44,7 @@ const Home = () => {
   // get all notes
   const getAllNotes = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/note/all", {
+      const res = await axios.get(`${API_BASE_URL}/note/all`, {
         withCredentials: true,
       })
 
@@ -68,8 +70,7 @@ const Home = () => {
     const noteId = data._id
 
     try {
-      const res = await axios.delete(
-        "http://localhost:3000/api/note/delete/" + noteId,
+      const res = await axios.delete(`${API_BASE_URL}/note/delete/${noteId}`,
         { withCredentials: true }
       )
 
@@ -87,7 +88,7 @@ const Home = () => {
 
   const onSearchNote = async (query) => {
     try {
-      const res = await axios.get("http://localhost:3000/api/note/search", {
+      const res = await axios.get(`${API_BASE_URL}/note/search`, {
         params: { query },
         withCredentials: true,
       })
@@ -114,8 +115,7 @@ const Home = () => {
     const noteId = noteData._id
 
     try {
-      const res = await axios.put(
-        "http://localhost:3000/api/note/update-note-pinned/" + noteId,
+      const res = await axios.put(`${API_BASE_URL}/note/update-note-pinned/${noteId}`,
         { isPinned: !noteData.isPinned },
         { withCredentials: true }
       )

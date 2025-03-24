@@ -4,6 +4,8 @@ import ProfileInfo from "./Cards/ProfileInfo"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { toast } from "react-toastify"
+import API_BASE_URL from "../config/api";
+
 import {
   signInSuccess,
   signoutFailure,
@@ -32,7 +34,7 @@ const Navbar = ({ userInfo, onSearchNote, handleClearSearch }) => {
     try {
       dispatch(signoutStart())
 
-      const res = await axios.get("http://localhost:3000/api/auth/signout", {
+      const res = await axios.get(`${API_BASE_URL}/auth/signout`, {
         withCredentials: true,
       })
 

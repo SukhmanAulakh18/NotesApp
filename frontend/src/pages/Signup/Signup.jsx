@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import PasswordInput from "../../components/Input/PasswordInput"
 import { Link, useNavigate } from "react-router-dom"
 import { validateEmail } from "../../utils/helper"
+import API_BASE_URL from "../../config/api";
+
 import axios from "axios"
 import { toast } from "react-toastify"
 
@@ -35,8 +37,8 @@ const Signup = () => {
 
     // sign up api
     try {
-      const res = await axios.post(
-        "http://localhost:3000/api/auth/signup",
+      const res = await axios.post(`${API_BASE_URL}/auth/signup`, 
+
         { username: name, email, password },
         { withCredentials: true }
       )

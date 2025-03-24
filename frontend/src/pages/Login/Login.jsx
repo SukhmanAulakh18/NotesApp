@@ -3,6 +3,8 @@ import PasswordInput from "../../components/Input/PasswordInput"
 import { Link, useNavigate } from "react-router-dom"
 import { validateEmail } from "../../utils/helper"
 import { useDispatch } from "react-redux"
+import API_BASE_URL from "../../config/api";
+
 import {
   signInFailure,
   signInStart,
@@ -39,8 +41,7 @@ const Login = () => {
     try {
       dispatch(signInStart())
 
-      const res = await axios.post(
-        "http://localhost:3000/api/auth/signin",
+      const res = await axios.post(`${API_BASE_URL}/auth/signin`,
         { email, password },
         { withCredentials: true }
       )
